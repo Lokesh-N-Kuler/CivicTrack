@@ -20,11 +20,11 @@ depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
     with op.batch_alter_table('users', schema=None) as batch_op:
-        batch_op.add_column(sa.Column('is_blocked', sa.Boolean(), nullable=False, server_default=sa.text('0')))
+       batch_op.add_column(sa.Column('is_blocked', sa.Boolean(), nullable=False, server_default=sa.text('false')))
         batch_op.add_column(sa.Column('blocked_at', sa.DateTime(), nullable=True))
         batch_op.add_column(sa.Column('blocked_by_id', sa.Integer(), nullable=True))
         batch_op.add_column(sa.Column('blocked_reason', sa.String(length=500), nullable=True))
-        batch_op.add_column(sa.Column('is_deleted', sa.Boolean(), nullable=False, server_default=sa.text('0')))
+        batch_op.add_column(sa.Column('is_deleted', sa.Boolean(), nullable=False, server_default=sa.text('false')))
         batch_op.add_column(sa.Column('deleted_at', sa.DateTime(), nullable=True))
         batch_op.add_column(sa.Column('deleted_by_id', sa.Integer(), nullable=True))
         batch_op.add_column(sa.Column('deletion_reason', sa.String(length=500), nullable=True))
